@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "345482176984",
+    "project_id": "altunbasak-f1c45",
+    "storage_bucket": "altunbasak-f1c45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345482176984:android:9c385998d2c5cf994e2aad",
+        "android_client_info": {
+          "package_name": "com.example.altunbasakadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345482176984-e1c3q48rqe13phau6h03p0g4vmmvoehn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8YjtZKzP1W3NsULZnBFW9ZPqEIx7psks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345482176984-e1c3q48rqe13phau6h03p0g4vmmvoehn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
