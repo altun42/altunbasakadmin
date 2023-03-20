@@ -143,6 +143,22 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                   height: 25,
                 ),
                 AdvertInfoTextField(
+                  label: "İlan Başlığı Giriniz",
+                  type: TextInputType.text,
+                  controller: controller.ilanBasligi,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                AdvertInfoTextField(
+                  label: "İlan Tipi",
+                  type: TextInputType.text,
+                  controller: controller.ilanTipi,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                AdvertInfoTextField(
                   label: "İlan No",
                   type: TextInputType.number,
                   controller: controller.ilanNo,
@@ -168,7 +184,7 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 ),
                 AdvertInfoTextField(
                   label: "Oda Sayısı",
-                  type: TextInputType.number,
+                  type: TextInputType.text,
                   controller: controller.odaSayisi,
                 ),
                 SizedBox(
@@ -184,7 +200,7 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 ),
                 AdvertInfoTextField(
                   label: "Metrekare",
-                  type: TextInputType.number,
+                  type: TextInputType.text,
                   controller: controller.metreKare,
                 ),
                 SizedBox(
@@ -264,7 +280,7 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 ),
                 AdvertInfoTextField(
                   label: "Aidat",
-                  type: TextInputType.number,
+                  type: TextInputType.text,
                   controller: controller.aidat,
                 ),
                 SizedBox(
@@ -288,8 +304,16 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 ),
                 AdvertInfoTextField(
                   label: "Kira Getirisi",
-                  type: TextInputType.number,
+                  type: TextInputType.text,
                   controller: controller.kiraGetirisi,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                AdvertInfoTextField(
+                  label: "Fiyat",
+                  type: TextInputType.text,
+                  controller: controller.ilanFiyat,
                 ),
                 SizedBox(
                   height: 17,
@@ -360,7 +384,33 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 ),
                 Bounceable(
                   onTap: () {
-                    controller.pickImages();
+                    controller.createHomeAd(
+                      ilanBasligi: controller.ilanBasligi.text,
+                      ilanTipi: controller.ilanTipi.text,
+                      ilanNo: controller.ilanNo.text,
+                      ilanTarihi: controller.ilanTarihi.text,
+                      konutSekli: controller.konutSekli.text,
+                      odaSayisi: controller.odaSayisi.text,
+                      banyoSayisi: controller.banyoSayisi.text,
+                      metreKare: controller.metreKare.text,
+                      binaninYasi: controller.binaninYasi.text,
+                      kat: controller.kat.text,
+                      bulunduguKat: controller.bulunduguKat.text,
+                      isinmaTipi: controller.isinmaTipi.text,
+                      yakitTipi: controller.yakitTipi.text,
+                      yapitipi: controller.yapitipi.text,
+                      yapininDurumu: controller.yapininDurumu.text,
+                      kullanimDurumu: controller.kullanimDurumu.text,
+                      krediyeUygunluk: controller.krediyeUygunluk.text,
+                      aidat: controller.aidat.text,
+                      takas: controller.takas.text,
+                      cepheSecenekleri: controller.cepheSecenekleri.text,
+                      kiraGetirisi: controller.kiraGetirisi.text,
+                      ilanFiyat: controller.ilanFiyat.text,
+                      siteIcerisinde: controller.siteIcerisinde.text,
+                      aciklama: controller.aciklama.text,
+                    );
+                    controller.uploadFiles();
                   },
                   child: Container(
                     height: 50,
