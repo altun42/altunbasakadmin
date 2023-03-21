@@ -20,6 +20,7 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
     return Scaffold(
       backgroundColor: Color(0xfff3f3f3),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         title: Text(
           "İlan Ekle",
@@ -131,227 +132,251 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 SizedBox(
                   height: 30,
                 ),
-                Text(
-                  "Bina Bilgileri Ekle",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: "Sf Pro",
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 128, 126, 126)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "İlan Bilgileri Ekle",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: "Sf Pro",
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromARGB(255, 128, 126, 126)),
+                    ),
+                    Bounceable(
+                      onTap: () {
+                        if (controller.isSee.value == true) {
+                          controller.isSee.value = false;
+                        } else {
+                          controller.isSee.value = true;
+                        }
+                      },
+                      child: Icon(Icons.arrow_drop_down_circle),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 25,
                 ),
-                AdvertInfoTextField(
-                  label: "İlan Başlığı Giriniz",
-                  type: TextInputType.text,
-                  controller: controller.ilanBasligi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "İlan Tipi",
-                  type: TextInputType.text,
-                  controller: controller.ilanTipi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "İlan No",
-                  type: TextInputType.number,
-                  controller: controller.ilanNo,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "İlan Tarihi",
-                  type: TextInputType.datetime,
-                  controller: controller.ilanTarihi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Konut Şekli",
-                  type: TextInputType.name,
-                  controller: controller.konutSekli,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Oda Sayısı",
-                  type: TextInputType.text,
-                  controller: controller.odaSayisi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Banyo Sayısı",
-                  type: TextInputType.number,
-                  controller: controller.banyoSayisi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Metrekare",
-                  type: TextInputType.text,
-                  controller: controller.metreKare,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Binanın Yaşı",
-                  type: TextInputType.number,
-                  controller: controller.binaninYasi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Binadaki Kat Sayısı",
-                  type: TextInputType.number,
-                  controller: controller.kat,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Bulunduğu Kat",
-                  type: TextInputType.number,
-                  controller: controller.bulunduguKat,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Isınma Tipi",
-                  type: TextInputType.name,
-                  controller: controller.isinmaTipi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Yakıt Tipi",
-                  type: TextInputType.name,
-                  controller: controller.yakitTipi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Yapı Tipi",
-                  type: TextInputType.name,
-                  controller: controller.yapitipi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Yapının Durumu",
-                  type: TextInputType.name,
-                  controller: controller.yapininDurumu,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Kullanım Durumu",
-                  type: TextInputType.name,
-                  controller: controller.kullanimDurumu,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Krediye Uygunluk",
-                  type: TextInputType.name,
-                  controller: controller.krediyeUygunluk,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Aidat",
-                  type: TextInputType.text,
-                  controller: controller.aidat,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Takas",
-                  type: TextInputType.name,
-                  controller: controller.takas,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Cephe Seçenekleri",
-                  type: TextInputType.name,
-                  controller: controller.cepheSecenekleri,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Kira Getirisi",
-                  type: TextInputType.text,
-                  controller: controller.kiraGetirisi,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Fiyat",
-                  type: TextInputType.text,
-                  controller: controller.ilanFiyat,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                AdvertInfoTextField(
-                  label: "Site İçerisinde",
-                  type: TextInputType.name,
-                  controller: controller.siteIcerisinde,
-                ),
-                SizedBox(
-                  height: 17,
-                ),
-                TextFormField(
-                  controller: controller.aciklama,
-                  minLines: 1,
-                  maxLines: 10,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: Color(0xff232455),
-                        )),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: Color(0xffD45E39),
-                        )),
-                    filled: true,
-                    fillColor: Colors.white,
-                    label: Text(
-                      "Açıklama",
-                      style: TextStyle(color: Color(0xff232455), fontSize: 20),
-                    ),
-                  ),
-                ),
+                Obx(() {
+                  return controller.isSee.value == true
+                      ? Column(
+                          children: [
+                            AdvertInfoTextField(
+                              label: "İlan Başlığı Giriniz (Zorunlu)",
+                              type: TextInputType.text,
+                              controller: controller.ilanBasligi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "İlan Tipi",
+                              type: TextInputType.text,
+                              controller: controller.ilanTipi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "İlan No (Zorunlu)",
+                              type: TextInputType.number,
+                              controller: controller.ilanNo,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "İlan Tarihi",
+                              type: TextInputType.datetime,
+                              controller: controller.ilanTarihi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Konut Şekli",
+                              type: TextInputType.name,
+                              controller: controller.konutSekli,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Oda Sayısı",
+                              type: TextInputType.text,
+                              controller: controller.odaSayisi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Banyo Sayısı",
+                              type: TextInputType.number,
+                              controller: controller.banyoSayisi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Metrekare",
+                              type: TextInputType.text,
+                              controller: controller.metreKare,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Binanın Yaşı",
+                              type: TextInputType.number,
+                              controller: controller.binaninYasi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Binadaki Kat Sayısı",
+                              type: TextInputType.number,
+                              controller: controller.kat,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Bulunduğu Kat",
+                              type: TextInputType.number,
+                              controller: controller.bulunduguKat,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Isınma Tipi",
+                              type: TextInputType.name,
+                              controller: controller.isinmaTipi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Yakıt Tipi",
+                              type: TextInputType.name,
+                              controller: controller.yakitTipi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Yapı Tipi",
+                              type: TextInputType.name,
+                              controller: controller.yapitipi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Yapının Durumu",
+                              type: TextInputType.name,
+                              controller: controller.yapininDurumu,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Kullanım Durumu",
+                              type: TextInputType.name,
+                              controller: controller.kullanimDurumu,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Krediye Uygunluk",
+                              type: TextInputType.name,
+                              controller: controller.krediyeUygunluk,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Aidat",
+                              type: TextInputType.text,
+                              controller: controller.aidat,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Takas",
+                              type: TextInputType.name,
+                              controller: controller.takas,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Cephe Seçenekleri",
+                              type: TextInputType.name,
+                              controller: controller.cepheSecenekleri,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Kira Getirisi",
+                              type: TextInputType.text,
+                              controller: controller.kiraGetirisi,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Fiyat",
+                              type: TextInputType.text,
+                              controller: controller.ilanFiyat,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            AdvertInfoTextField(
+                              label: "Site İçerisinde",
+                              type: TextInputType.name,
+                              controller: controller.siteIcerisinde,
+                            ),
+                            SizedBox(
+                              height: 17,
+                            ),
+                            TextFormField(
+                              controller: controller.aciklama,
+                              minLines: 1,
+                              maxLines: 10,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      width: 2,
+                                      color: Color(0xff232455),
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      width: 2,
+                                      color: Color(0xffD45E39),
+                                    )),
+                                filled: true,
+                                fillColor: Colors.white,
+                                label: Text(
+                                  "Açıklama",
+                                  style: TextStyle(
+                                      color: Color(0xff232455), fontSize: 20),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : SizedBox();
+                }),
                 SizedBox(
                   height: 17,
                 ),
@@ -385,6 +410,7 @@ class AddHomePostingScreen extends GetView<AddHomePostingController> {
                 Bounceable(
                   onTap: () {
                     controller.createHomeAd(
+                      adress: controller.addressController.value.text,
                       ilanBasligi: controller.ilanBasligi.text,
                       ilanTipi: controller.ilanTipi.text,
                       ilanNo: controller.ilanNo.text,
@@ -475,7 +501,7 @@ class AdvertInfoTextField extends StatelessWidget {
         fillColor: Colors.white,
         label: Text(
           label,
-          style: TextStyle(color: Color(0xff232455), fontSize: 20),
+          style: TextStyle(color: Color(0xff232455), fontSize: 15),
         ),
       ),
     );

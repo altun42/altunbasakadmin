@@ -10,8 +10,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddHomePostingController extends GetxController {
+  RxBool isSee = false.obs;
   GoogleMapController? mapController;
   RxString currentAddress = "".obs;
+  RxString il = "".obs;
+  RxString ilce = "".obs;
+
   Rx<LatLng?> selectedLocation = Rx<LatLng?>(null);
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -53,8 +57,12 @@ class AddHomePostingController extends GetxController {
     try {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(location.latitude, location.longitude);
-      if (placemarks != null && placemarks.isNotEmpty) {
+      if (placemarks.isNotEmpty) {
         Placemark place = placemarks[0];
+        // administrativeArea!.value = place.administrativeArea!;
+        // subAdministrativeArea!.value = place.subAdministrativeArea!;
+        il.value = "${place.administrativeArea}";
+        ilce.value = "${place.subAdministrativeArea}";
         addressController.value.text =
             "${place.street},${place.postalCode},${place.country},${place.administrativeArea}/${place.subAdministrativeArea}";
       }
@@ -135,25 +143,68 @@ class AddHomePostingController extends GetxController {
     }
   }
 
-  void removeImage(int index) {
+  void removeImage(int index) async {
     photoss.removeAt(index);
+    pickedImages!.removeAt(index);
   }
 
   Future<void> uploadFiles() async {
-    for (var xfile in pickedImages!) {
-      var fileName = xfile.path.split("/").last;
-      var filePath = "${ilanNo.text}/$fileName";
+    if (pickedImages != null &&
+        ilanNo.text.isNotEmpty &&
+        ilanBasligi.text.isNotEmpty) {
+      for (var xfile in pickedImages!) {
+        var fileName = xfile.path.split("/").last;
+        var filePath = "${ilanNo.text}/$fileName";
 
-      var file = File(xfile.path);
-      var ref = FirebaseStorage.instance.ref().child(filePath);
-      await ref.putFile(file).then((TaskSnapshot taskSnapshot) async {
-        if (taskSnapshot.state == TaskState.success) {
-          var downloadUrl = await ref.getDownloadURL();
-          Get.snackbar("Başarılı", "Fotoğraflar Eklendi");
-        } else {
-          Get.snackbar("title", "message");
-        }
-      });
+        var file = File(xfile.path);
+        var ref = FirebaseStorage.instance.ref().child(filePath);
+        await ref.putFile(file).then((TaskSnapshot taskSnapshot) async {
+          if (taskSnapshot.state == TaskState.success) {
+            var downloadUrl = await ref.getDownloadURL();
+          } else {
+            Get.snackbar("Başarısız", "Fotoğraf Ekleme Başarısız",
+                titleText: Text(
+                  "Başarısız",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: "Sf Pro",
+                    color: Color(0xffD45E39),
+                  ),
+                ),
+                messageText: Text(
+                  "Fotoğraf Ekleme Başarısız",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontFamily: "Sf Pro",
+                    color: Color(0xff232455),
+                  ),
+                ),
+                backgroundColor: Colors.white);
+          }
+        });
+      }
+    } else {
+      Get.snackbar(
+        "Hatırlatma",
+        "İlan Fotoğrafı Eklenmedi",
+        backgroundColor: Colors.white,
+        titleText: Text(
+          "Hatırlatma",
+          style: TextStyle(
+            fontSize: 20,
+            fontFamily: "Sf Pro",
+            color: Color(0xffD45E39),
+          ),
+        ),
+        messageText: Text(
+          "İlan Fotoğrafı Eklenmedi",
+          style: TextStyle(
+            fontSize: 12,
+            fontFamily: "Sf Pro",
+            color: Color(0xff232455),
+          ),
+        ),
+      );
     }
   }
 
@@ -181,6 +232,7 @@ class AddHomePostingController extends GetxController {
       required String kiraGetirisi,
       required String ilanFiyat,
       required String siteIcerisinde,
+      required String adress,
       required String aciklama}) async {
     if (ilanBasligi.isNotEmpty && ilanNo.isNotEmpty) {
       DocumentReference docAd =
@@ -214,7 +266,10 @@ class AddHomePostingController extends GetxController {
         "fiyat": ilanFiyat.isNotEmpty ? ilanFiyat : "Belirtilmedi",
         "siteIcerisinde":
             siteIcerisinde.isNotEmpty ? siteIcerisinde : "Belirtilmedi",
-        "aciklama": aciklama.isNotEmpty ? aciklama : "Belirtilmedi"
+        "aciklama": aciklama.isNotEmpty ? aciklama : "Belirtilmedi",
+        "adress": adress.isNotEmpty ? adress : "Belirtilmedi",
+        "il": il.value.isNotEmpty ? il.value : "Belirtilmedi",
+        "ilce": ilce.value.isNotEmpty ? ilce.value : "Belirtilmedi"
       };
       await docAd.set(json);
       Get.snackbar("Başarılı", "İlan Eklendi",

@@ -6,18 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
-class AppPages{
-  static const INITIAL = Routes.ADDHOMEPOSTING;
-  static final routes =[
+class AppPages {
+  static const INITIAL = Routes.HOME;
+  static final routes = [
     GetPage(
-      name: Routes.HOME,
-      page: () => const HomeScreen(),
-      binding: HomeScreenBinding()
-    ),
+        name: Routes.HOME,
+        page: () => const HomeScreen(),
+        binding: HomeScreenBinding()),
     GetPage(
-      name: Routes.ADDHOMEPOSTING,
-      page: () => AddHomePostingScreen(),
-      binding: AddHomePostingBinding()
-    )
+        name: Routes.ADDHOMEPOSTING,
+        page: () => AddHomePostingScreen(),
+        binding: AddHomePostingBinding())
   ];
 }

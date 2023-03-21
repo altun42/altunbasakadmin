@@ -38,6 +38,55 @@ class MapScreen extends StatelessWidget {
                     maxLines: 2,
                     controller: controller.addressController.value,
                     decoration: InputDecoration(
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Bounceable(
+                          onTap: () {
+                            if (controller
+                                .addressController.value.text.isEmpty) {
+                              Get.snackbar("Bulunamadı",
+                                  "Lütfen Adres Bilgisini Giriniz",
+                                  titleText: Text(
+                                    "Bulunamadı",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: "Sf Pro",
+                                      color: Color(0xffD45E39),
+                                    ),
+                                  ),
+                                  messageText: Text(
+                                    "Lütfen Adres Bilgisini Giriniz",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: "Sf Pro",
+                                      color: Color(0xff232455),
+                                    ),
+                                  ),
+                                  backgroundColor: Colors.white);
+                            } else {
+                              controller.moveToAdress(
+                                  controller.addressController.value.text);
+                            }
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 70,
+                            decoration: BoxDecoration(
+                                color: Color(0xffD45E39),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                                child: Text(
+                              "Ara",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xffF3F3F3),
+                                  fontFamily: "Sf Pro"),
+                            )),
+                          ),
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
                       prefixIcon: Icon(Icons.search),
                       labelText: 'Adres Girin',
                       border: OutlineInputBorder(),
@@ -47,48 +96,6 @@ class MapScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 10,
-              ),
-              Bounceable(
-                onTap: () {
-                  if (controller.addressController.value.text.isEmpty) {
-                    Get.snackbar("Bulunamadı", "Lütfen Adres Bilgisini Giriniz",
-                        titleText: Text(
-                          "Bulunamadı",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Sf Pro",
-                            color: Color(0xffD45E39),
-                          ),
-                        ),
-                        messageText: Text(
-                          "Lütfen Adres Bilgisini Giriniz",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Sf Pro",
-                            color: Color(0xff232455),
-                          ),
-                        ),
-                        backgroundColor: Colors.white);
-                  } else {
-                    controller
-                        .moveToAdress(controller.addressController.value.text);
-                  }
-                },
-                child: Container(
-                  height: 40,
-                  width: 70,
-                  decoration: BoxDecoration(
-                      color: Color(0xffD45E39),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                      child: Text(
-                    "Ara",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xffF3F3F3),
-                        fontFamily: "Sf Pro"),
-                  )),
-                ),
               ),
               SizedBox(
                 height: 10,
@@ -111,20 +118,6 @@ class MapScreen extends StatelessWidget {
                                     position:
                                         controller.selectedLocation.value!)
                               ]),
-                    // markers: Set<Marker>.from([
-                    //   controller.selectedLocation.value == null
-                    //       ? Marker(
-                    //           markerId: MarkerId("Mevcut Konum"),
-                    //           position: LatLng(38.963745, 35.243320),
-                    //           infoWindow: InfoWindow(
-                    //               title: "Adres",
-                    //               snippet:
-                    //                   controller.addressController.value.text),
-                    //         )
-                    //       : Marker(
-                    //           markerId: MarkerId("Seçilen Adres"),
-                    //           position: controller.selectedLocation.value!),
-                    // ]),
                   );
                 }),
               ),
