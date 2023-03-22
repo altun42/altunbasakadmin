@@ -47,6 +47,9 @@ dependencies:
   geocoding: ^2.1.0
   cloud_firestore: ^4.4.5
   firebase_storage: ^11.0.16
+  firebase_database: ^10.0.16
+  flutter_secure_storage: ^8.0.0
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:

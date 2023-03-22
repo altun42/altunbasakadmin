@@ -121,22 +121,30 @@ class HomeScreen extends GetView<HomescreenController> {
                     child: Text("Bir Hata Oluştu"),
                   );
                 }
-                List<Data> data = snapshot.data ?? [];
-                return Expanded(child: Obx(() {
-                  return ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: controller.dataList.length,
-                    itemBuilder: (context, index) {
-                      return AdsCard(
-                          ilanTipi: controller.dataList[index].ilanTipi,
-                          il: controller.dataList[index].il,
-                          ilce: controller.dataList[index].ilce,
-                          ilanNo: controller.dataList[index].ilanNo,
-                          fiyat: controller.dataList[index].fiyat);
-                    },
-                  );
-                }));
+
+                return Obx(
+                  () {
+                    return controller.items.isNotEmpty
+                        ? Expanded(child: Obx(() {
+                            return ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: controller.dataList.length,
+                              itemBuilder: (context, index) {
+                                return AdsCard(
+                                    path: controller.items[0],
+                                    ilanTipi:
+                                        controller.dataList[index].ilanTipi,
+                                    il: controller.dataList[index].il,
+                                    ilce: controller.dataList[index].ilce,
+                                    ilanNo: controller.dataList[index].ilanNo,
+                                    fiyat: controller.dataList[index].fiyat);
+                              },
+                            );
+                          }))
+                        : SizedBox();
+                  },
+                );
               },
             ),
           ],
@@ -154,12 +162,14 @@ class AdsCard extends StatelessWidget {
     required this.ilce,
     required this.ilanNo,
     required this.fiyat,
+    required this.path,
   });
   final String ilanTipi;
   final String il;
   final String ilce;
   final String ilanNo;
   final String fiyat;
+  final String path;
 
   @override
   Widget build(BuildContext context) {
@@ -178,13 +188,12 @@ class AdsCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 35, left: 10),
                 child: Container(
-                  height: 80,
-                  width: 130,
-                  child: Image.asset(
-                    "assets/images/demoImage.jpg",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    height: 100,
+                    width: 130,
+                    child: Image.network(
+                      path,
+                      fit: BoxFit.fill,
+                    )),
               ),
               SizedBox(
                 width: 20,

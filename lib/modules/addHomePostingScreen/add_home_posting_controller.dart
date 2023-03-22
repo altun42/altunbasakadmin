@@ -84,12 +84,8 @@ class AddHomePostingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    photoss.clear();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
+    photoss.clear();
   }
 
   TextEditingController ilanNo = TextEditingController();
@@ -131,6 +127,7 @@ class AddHomePostingController extends GetxController {
   TextEditingController kiraGetirisi = TextEditingController();
   TextEditingController siteIcerisinde = TextEditingController();
   TextEditingController aciklama = TextEditingController();
+
   List<XFile>? pickedImages;
   void pickImages() async {
     final picker = ImagePicker();
